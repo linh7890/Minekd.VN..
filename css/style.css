@@ -1,1118 +1,628 @@
-/* General Styling */
+/* General Styles */
 :root {
-    --primary-color: #00bcd4; /* Cyan - Màu chủ đạo, tươi sáng */
-    --secondary-color: #ff9800; /* Orange - Màu phụ đạo, nổi bật */
-    --dark-bg: #1a1a1a; /* Nền tối sâu */
-    --light-text: #e0e0e0; /* Chữ sáng */
-    --card-bg: #2b2b2b; /* Nền card tối hơn */
-    --border-color: #00bcd4; /* Viền theo màu primary */
-    --hover-bg: #0097a7; /* Màu hover của primary */
-    --button-shadow: 0 5px 15px rgba(0, 188, 212, 0.4); /* Shadow cho nút */
-    --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Shadow cho chữ */
-    --glow-effect: 0 0 15px rgba(0, 188, 212, 0.6); /* Hiệu ứng phát sáng */
-    --secondary-glow: 0 0 12px rgba(255, 152, 0, 0.6); /* Hiệu ứng phát sáng phụ */
-    --danger-color: #d32f2f; /* Màu đỏ cho hành động nguy hiểm */
-    --warning-color: #fbc02d; /* Màu vàng cho cảnh báo */
-}
-
-html {
-    scroll-behavior: smooth;
+    --primary-color: #00bcd4; /* Cyan */
+    --secondary-color: #ff9800; /* Orange */
+    --dark-bg: #1a1a1a;
+    --light-text: #f0f0f0;
+    --card-bg: #2b2b2b;
+    --border-color: #444;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; /* Font hiện đại hơn */
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
-    background: var(--dark-bg) url('../images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background-color: var(--dark-bg);
     color: var(--light-text);
-    line-height: 1.8;
-    position: relative; /* Cho các hiệu ứng overlay */
-    overflow-x: hidden; /* Tránh scroll ngang */
-}
-
-/* Overlay cho background - Tạo lớp phủ để chữ dễ đọc hơn và thêm blur nhẹ */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Lớp phủ mờ */
-    backdrop-filter: blur(3px); /* Hiệu ứng blur nhẹ */
-    z-index: -1;
+    line-height: 1.6;
+    background-image: url('https://www.transparenttextures.com/patterns/dark-fish-skin.png'); /* You might need to update this URL */
+    background-attachment: fixed;
 }
 
 .container {
-    width: 85%;
     max-width: 1200px;
-    margin: auto;
-    overflow: hidden;
-    padding: 20px 0;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Header & Navigation */
+/* Header */
 header {
-    background: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    padding: 1.2rem 0;
-    border-bottom: 3px solid var(--primary-color);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-header h1 {
-    float: left;
-    margin: 0;
-    padding: 0;
-    height: auto; 
+header .container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-header h1 a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 2.5rem;
-    font-weight: 700;
-    transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
-    text-shadow: var(--text-shadow);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* CSS cho Logo */
-.header-logo {
-    height: 60px; /* Chiều cao cố định cho logo */
-    width: auto; /* Chiều rộng tự động để giữ tỷ lệ */
-    vertical-align: middle; /* Căn chỉnh với văn bản nếu có */
-    transition: transform 0.3s ease-out, filter 0.3s ease-out; /* Thêm transition cho hover */
-    filter: drop-shadow(0 0 8px rgba(0, 188, 212, 0.7)); /* Hiệu ứng đổ bóng phát sáng cho logo */
-}
-
-header h1 a:hover .header-logo {
-    transform: scale(1.05) rotate(2deg); /* Phóng to nhẹ và xoay nhẹ khi hover */
-    filter: drop-shadow(0 0 15px rgba(255, 152, 0, 0.9)); /* Đổi màu glow khi hover */
-}
-
-header h1 a:hover {
+.logo {
+    font-size: 2em;
+    font-weight: bold;
     color: var(--primary-color);
-    text-shadow: var(--glow-effect);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-
-header nav {
-    float: right;
-    margin-top: 15px;
-}
-
-header ul {
+nav ul {
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
+    display: flex;
 }
 
-header li {
-    display: inline;
-    padding: 0 20px;
+nav ul li {
+    margin-left: 25px;
 }
 
-header a {
-    color: #fff;
+nav ul li a {
+    color: var(--light-text);
     text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 1.15rem;
-    transition: color 0.3s ease-out, text-shadow 0.3s ease-out, transform 0.2s ease-out;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
-header a:hover {
+nav ul li a:hover {
     color: var(--secondary-color);
-    text-shadow: var(--secondary-glow);
-    transform: translateY(-2px);
+    border-bottom: 2px solid var(--secondary-color);
 }
 
 /* Hero Section */
-#hero {
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://example.com/hero-bg.jpg') no-repeat center center/cover; /* Update with a relevant image */
     text-align: center;
-    color: #fff;
-    text-shadow: var(--text-shadow);
-    padding: 50px 0;
-}
-
-#hero .container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 40px 60px;
-    border-radius: 15px;
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 25px rgba(0, 188, 212, 0.5);
-    animation: fadeIn 1.5s ease-out forwards;
+    padding: 100px 20px;
+    color: white;
     position: relative;
     overflow: hidden;
 }
 
-#hero .container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 188, 212, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
-    z-index: -1;
-    pointer-events: none;
-}
-
-
-#hero h2 {
-    font-size: 4.2rem;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
     color: var(--primary-color);
-    letter-spacing: 2px;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+    animation: fadeInDown 1s ease-out;
 }
 
-#hero p {
-    font-size: 1.6rem;
-    margin-bottom: 40px;
-    font-weight: 300;
+.hero p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease-out;
+    animation-delay: 0.3s;
 }
 
-#hero button {
+.btn {
+    display: inline-block;
     background: var(--primary-color);
-    color: #fff;
-    padding: 18px 40px;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
     border: none;
-    border-radius: 8px;
-    font-size: 1.5rem;
     cursor: pointer;
-    transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
-    font-weight: 700;
-    text-transform: uppercase;
-    box-shadow: var(--button-shadow);
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
+    font-size: 1em;
 }
 
-#hero button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: skewX(-20deg);
-    transition: all 0.4s ease-out;
+.btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
 }
 
-#hero button:hover::before {
-    left: 100%;
+.btn-secondary {
+    background: var(--secondary-color);
 }
 
-#hero button:hover {
-    background: var(--hover-bg);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 188, 212, 0.8);
+.btn-secondary:hover {
+    background: var(--primary-color);
 }
 
 /* Main Content Sections */
-main section {
-    background: rgba(0, 0, 0, 0.8);
-    margin-bottom: 40px;
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--border-color);
-    animation: slideInUp 1s ease-out forwards;
+.main-section {
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     position: relative;
     overflow: hidden;
+    background: linear-gradient(to bottom right, #2b2b2b, #1a1a1a);
 }
 
-main section::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    z-index: -1;
-    border-radius: 17px;
-    filter: blur(4px);
-}
-
-
-main h2 {
-    color: var(--secondary-color);
+.main-section h2 {
     text-align: center;
+    font-size: 2.5em;
     margin-bottom: 40px;
-    font-size: 3rem;
-    text-transform: uppercase;
-    border-bottom: 3px solid var(--primary-color);
-    padding-bottom: 15px;
-    display: inline-block;
-    width: 100%;
-    text-shadow: var(--text-shadow);
-    letter-spacing: 1px;
-    background: linear-gradient(to right, var(--secondary-color), #ffc107);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Admin List */
-.admin-list {
-    display: grid; /* Sử dụng Grid cho bố cục thẳng hàng */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Tự động căn chỉnh cột */
-    gap: 30px; /* Khoảng cách giữa các card */
-    justify-content: center; /* Căn giữa các card nếu có ít hơn 3 cột */
-    align-items: stretch; /* Đảm bảo các card có chiều cao bằng nhau */
+/* Admin Team Section */
+.admin-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
 }
 
 .admin-card {
-    background: var(--card-bg);
-    padding: 30px;
+    background: var(--dark-bg);
     border-radius: 10px;
+    padding: 25px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
-    position: relative;
-    overflow: hidden;
-    display: flex; /* Sử dụng flex để căn chỉnh nội dung bên trong card */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Đẩy tiêu đề và nội dung ra hai phía */
-}
-
-.admin-card::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    transition: all 0.4s ease-out;
-    z-index: 1;
-}
-
-.admin-card:hover::after {
-    width: 300px;
-    height: 300px;
-    opacity: 0.2;
+    justify-content: space-between;
+    min-height: 200px; /* Ensure consistent height */
 }
 
 .admin-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7), var(--glow-effect);
-    border-color: var(--secondary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
 .admin-card h3 {
+    margin-top: 0;
+    font-size: 1.6em;
     color: var(--primary-color);
-    margin-bottom: 15px;
-    font-size: 1.8rem;
-    position: relative;
-    z-index: 2;
-    /* Cập nhật màu sắc tiêu đề dựa trên vai trò */
-    background: linear-gradient(to right, var(--primary-color), #80d4f4); /* Màu gradient mặc định cho OWNER */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block; /* Quan trọng cho gradient text */
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(0, 188, 212, 0.3); /* Viền dưới nhẹ */
 }
-
-/* Các màu cụ thể cho vai trò */
-.admin-card h3:contains("[OWNER]") {
-    background: linear-gradient(to right, #4CAF50, #81c784); /* Green gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.admin-card h3:contains("[STAFF]") {
-    background: linear-gradient(to right, #2196F3, #64b5f6); /* Blue gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.admin-card h3:contains("[TRADER]") {
-    background: linear-gradient(to right, #FFC107, #ffd54f); /* Amber gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 
 .admin-card p {
-    font-size: 1.1rem;
-    color: #bbb;
-    position: relative;
-    z-index: 2;
-    flex-grow: 1; /* Cho phép đoạn văn bản chiếm hết không gian còn lại */
-    text-align: justify; /* Căn đều chữ */
-    margin-top: 15px;
-}
-
-/* Forms */
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 30px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-}
-
-form::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom right, rgba(0, 188, 212, 0.05), rgba(255, 152, 0, 0.02));
-    z-index: -1;
-    pointer-events: none;
-}
-
-form label {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: var(--secondary-color);
-    font-size: 1.1rem;
-}
-
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="url"],
-form textarea,
-form select {
-    padding: 15px;
-    margin-bottom: 25px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background: #3a3a3a;
+    font-size: 1em;
     color: var(--light-text);
-    font-size: 1.1rem;
-    outline: none;
-    transition: border-color 0.3s ease-out, box-shadow 0.3s ease-out;
+    flex-grow: 1; /* Allow paragraph to take available space */
 }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 12px rgba(0, 188, 212, 0.8);
+/* Role based border colors */
+.admin-card.owner {
+    border-image: linear-gradient(to right, #e74c3c, #f39c12) 1;
 }
 
-form input::placeholder,
-form textarea::placeholder {
-    color: #999;
+.admin-card.staff {
+    border-image: linear-gradient(to right, #3498db, #2ecc71) 1;
 }
 
-form button[type="submit"] {
-    background: var(--primary-color);
-    color: #fff;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
-    font-weight: 600;
-    text-transform: uppercase;
-    box-shadow: var(--button-shadow);
-    position: relative;
-    overflow: hidden;
+.admin-card.trader {
+    border-image: linear-gradient(to right, #9b59b6, #34495e) 1;
 }
 
-form button[type="submit"]:hover {
-    background: var(--hover-bg);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
-}
-
-/* Footer */
-footer {
-    background: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    text-align: center;
-    padding: 25px 0;
-    margin-top: 50px;
-    border-top: 3px solid var(--primary-color);
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Footer Content Styling */
-footer .footer-content {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding: 20px 0;
-    text-align: left;
-}
-
-footer .footer-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    text-shadow: var(--text-shadow);
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-footer .footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-footer .footer-links li {
-    margin-bottom: 12px;
-}
-
-footer .footer-links a {
-    color: var(--light-text);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease-out, transform 0.2s ease-out;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-footer .footer-links a i {
-    font-size: 1.3rem;
-    color: var(--secondary-color);
-    transition: color 0.3s ease-out;
-}
-
-footer .footer-links a:hover {
-    color: var(--primary-color);
-    transform: translateX(5px);
-}
-
-footer .footer-links a:hover i {
-    color: var(--primary-color);
-}
-
-footer .footer-info p {
-    margin-bottom: 10px;
-    font-size: 1rem;
-    color: #bbb;
-}
-
-/* Auth Pages (Login/Register) */
+/* Auth Pages */
 .auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
     padding: 20px;
-    box-sizing: border-box;
 }
 
 .auth-container {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0, 188, 212, 0.6);
-    text-align: center;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 450px;
-    border: 2px solid var(--primary-color);
-    animation: fadeInScale 1s ease-out forwards;
-    position: relative;
-    overflow: hidden;
-}
-
-.auth-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(255, 152, 0, 0.05));
-    z-index: -1;
-    pointer-events: none;
+    text-align: center;
+    border-top: 5px solid var(--primary-color);
 }
 
 .auth-container h2 {
+    margin-bottom: 30px;
     color: var(--primary-color);
-    margin-bottom: 35px;
-    font-size: 2.8rem;
-    text-transform: uppercase;
-    text-shadow: var(--glow-effect);
+    font-size: 2em;
+}
+
+.auth-container .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.auth-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--light-text);
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #333;
+    color: var(--light-text);
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.auth-container input[type="text"]:focus,
+.auth-container input[type="email"]:focus,
+.auth-container input[type="password"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    margin-top: 15px;
 }
 
 .auth-container p {
     margin-top: 25px;
-    font-size: 1.1rem;
+    font-size: 0.95em;
 }
 
-.auth-container a {
+.auth-container p a {
     color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
 }
 
-.auth-container a:hover {
-    color: #ffc107;
+.auth-container p a:hover {
     text-decoration: underline;
-    text-shadow: var(--secondary-glow);
 }
 
-/* Admin Panel Specific Styling (for admin.html, but included here for completeness) */
-.admin-page main section {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 40px;
-    border-radius: 15px;
-    margin-top: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
-}
 
-.admin-page main section::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-    z-index: -1;
-    border-radius: 17px;
-    filter: blur(4px);
-}
-
-#report-list .report-item {
+/* Admin Panel - Report List */
+.report-list-container {
+    padding: 20px;
     background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    margin-top: 30px;
+}
+
+.report-item {
+    background: var(--dark-bg);
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
-    display: grid; /* Sử dụng Grid để căn chỉnh các mục con */
-    grid-template-columns: 1fr 1fr; /* 2 cột cho thông tin */
-    gap: 10px 20px; /* Khoảng cách giữa các hàng và cột */
-    align-items: start; /* Căn chỉnh các mục theo chiều dọc */
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 70px; /* Đủ chỗ cho nút điều khiển ở dưới */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#report-list .report-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.6), var(--secondary-glow);
-    border-color: var(--secondary-color);
+.report-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-#report-list .report-item h3 { /* Tên người chơi */
+.report-item h3 {
     color: var(--primary-color);
-    font-size: 1.8rem;
-    grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng */
+    margin-top: 0;
     margin-bottom: 10px;
-    text-align: left;
-    background: linear-gradient(to right, var(--primary-color), #80d4f4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline;
 }
 
-#report-list .report-item p {
+.report-item p {
     margin-bottom: 8px;
-    font-size: 1rem;
-    color: #ccc;
-    text-align: left;
 }
 
-#report-list .report-item p strong { /* Tăng độ nổi bật cho nhãn */
+.report-item .report-info span {
+    font-weight: bold;
     color: var(--secondary-color);
-    margin-right: 5px;
 }
 
-#report-list .report-item a { /* Định dạng link bằng chứng */
+.report-item .report-info a {
     color: var(--primary-color);
     text-decoration: none;
-    transition: color 0.3s ease-out;
+    word-break: break-all;
 }
 
-#report-list .report-item a:hover {
-    color: var(--secondary-color);
+.report-item .report-info a:hover {
     text-decoration: underline;
 }
 
-#report-list .report-item .report-actions {
-    grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng */
+.report-actions {
+    margin-top: 15px;
     display: flex;
-    justify-content: flex-end; /* Đẩy nút sang phải */
-    position: absolute; /* Đặt vị trí tuyệt đối */
-    bottom: 20px; /* Cách đáy 20px */
-    right: 20px; /* Cách phải 20px */
+    gap: 10px;
 }
 
-#report-list .report-item button {
-    background: var(--warning-color); /* Màu vàng cho Xử lý */
-    color: #333;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 15px; /* Điều chỉnh thành margin-left thay vì margin-right */
-    transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
-    font-weight: 600;
+.report-actions .btn {
+    padding: 8px 15px;
+    font-size: 0.9em;
 }
 
-#report-list .report-item button:hover {
-    background: #e4a700; /* Màu vàng đậm hơn khi hover */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
+.report-actions .btn-process {
+    background-color: #28a745; /* Green */
 }
 
-#report-list .report-item button.delete {
-    background: var(--danger-color); /* Màu đỏ cho Xóa */
-    color: #fff;
+.report-actions .btn-process:hover {
+    background-color: #218838;
 }
 
-#report-list .report-item button.delete:hover {
-    background: #a91f1f;
-    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
+.report-actions .btn-delete {
+    background-color: #dc3545; /* Red */
 }
 
-
-/* Keyframe Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.report-actions .btn-delete:hover {
+    background-color: #c82333;
 }
 
-@keyframes slideInUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 10px 0;
-    }
-
-    header h1 {
-        float: none;
-        text-align: center;
-        font-size: 2rem;
-    }
-
-    header h1 a {
-        justify-content: center; 
-    }
-
-    .header-logo {
-        height: 50px;
-    }
-
-    header nav {
-        float: none;
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    header li {
-        display: block;
-        padding: 8px 0;
-    }
-
-    #hero h2 {
-        font-size: 3rem;
-    }
-
-    #hero p {
-        font-size: 1.3rem;
-    }
-
-    #hero button {
-        font-size: 1.2rem;
-        padding: 12px 25px;
-    }
-
-    main section {
-        padding: 30px;
-    }
-
-    main h2 {
-        font-size: 2.2rem;
-    }
-
-    .admin-list {
-        grid-template-columns: 1fr; /* Một cột duy nhất trên mobile */
-        justify-items: center; /* Căn giữa các card */
-    }
-
-    .admin-card {
-        width: 90%;
-        max-width: 350px; /* Giới hạn chiều rộng trên mobile */
-        padding: 20px;
-    }
-
-    .auth-container {
-        width: 95%;
-        padding: 30px;
-    }
-
-    form {
-        padding: 20px;
-    }
-
-    footer .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    footer .footer-links ul,
-    footer .footer-info {
-        margin-bottom: 20px;
-    }
-
-    footer .footer-links a {
-        justify-content: center;
-    }
-
-    footer .footer-content h3 {
-        width: auto;
-    }
-
-    /* Admin report item on mobile */
-    #report-list .report-item {
-        grid-template-columns: 1fr; /* Một cột trên mobile */
-        padding-bottom: 90px; /* Tăng padding để đủ chỗ cho nút */
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-
-    #report-list .report-item .report-actions {
-        justify-content: space-around; /* Căn đều nút */
-        width: calc(100% - 40px); /* Chiếm gần hết chiều rộng */
-        left: 20px; /* Căn chỉnh từ trái */
-        right: auto; /* Bỏ right */
-    }
-    
-    #report-list .report-item button {
-        margin: 0 5px; /* Giảm margin giữa các nút */
-        font-size: 0.9rem;
-        padding: 8px 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    #hero h2 {
-        font-size: 2.5rem;
-    }
-    #hero p {
-        font-size: 1rem;
-    }
-    main h2 {
-        font-size: 1.8rem;
-    }
-    .admin-card h3 {
-        font-size: 1.5rem;
-    }
-    .auth-container h2 {
-        font-size: 2.2rem;
-    }
-}
-
-/* Pseudo-class để chọn text chứa một chuỗi (không phải CSS chuẩn, cần JS polyfill hoặc Sass/Less) */
-/* Để các màu sắc này hoạt động trong CSS thuần, bạn cần một cách khác để đánh dấu vai trò,
-   ví dụ thêm class riêng cho từng vai trò trong HTML (vd: class="admin-card owner-role") */
-/* Nếu bạn muốn dùng cách này, bạn sẽ cần thư viện JavaScript như jQuery hoặc tự viết code JS để thêm class */
-/* Hoặc sử dụng Preprocessor như Sass/Less nếu dự án cho phép */
-/* Dưới đây là ví dụ dùng CSS thuần bằng cách target một phần của thuộc tính "title" hoặc "data-role"
-   Nếu không, cách tốt nhất là thêm class vào HTML */
-
-/* VÍ DỤ CÁCH TỐT NHẤT: THÊM CLASS VÀO HTML
-   <h3 class="role-owner">[OWNER] Lương Trí Cường</h3>
-   <h3 class="role-staff">[STAFF] Lê Hanh</h3>
-   <h3 class="role-trader">[TRADER] Dương Thế Tùng</h3>
-*/
-
-/* VÀ SAU ĐÓ CSS SẼ LÀ: */
-.admin-card h3.role-owner {
-    background: linear-gradient(to right, #4CAF
-    /* Donate Page Specific Styling */
-body.donate-page {
-    /* Đảm bảo nền và các thuộc tính chung giống trang chủ */
-    background: var(--dark-bg) url('../images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Đảm bảo footer ở cuối trang */
-}
-
-body.donate-page main {
-    flex-grow: 1; /* Để phần nội dung chính chiếm hết không gian còn lại */
-    padding-top: 40px; /* Khoảng cách từ header */
-    padding-bottom: 40px; /* Khoảng cách đến footer */
-}
-
+/* Donate Page Specifics */
 .donate-container {
-    background: rgba(0, 0, 0, 0.85); /* Nền hơi trong suốt */
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0, 188, 212, 0.6);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 85%;
-    max-width: 900px;
-    margin: 40px auto; /* Tăng margin để cách header và footer */
-    border: 2px solid var(--primary-color);
-    animation: fadeInScale 1s ease-out forwards;
-    position: relative;
-    overflow: hidden;
-}
-
-.donate-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(255, 152, 0, 0.05));
-    z-index: -1;
-    pointer-events: none;
 }
 
 .donate-container h2 {
     color: var(--primary-color);
-    margin-bottom: 30px;
-    font-size: 3.5rem;
-    text-transform: uppercase;
-    text-shadow: var(--glow-effect);
-    border-bottom: 3px solid var(--secondary-color);
-    padding-bottom: 15px;
-    display: inline-block;
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .donate-container p {
-    font-size: 1.2rem;
-    color: var(--light-text);
+    font-size: 1.1em;
     margin-bottom: 25px;
+    color: var(--light-text);
 }
 
 .donate-container ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .donate-container ul li {
-    background: var(--card-bg);
+    background: #333;
+    padding: 12px 15px;
     margin-bottom: 10px;
-    padding: 15px 20px;
-    border-radius: 8px;
-    border-left: 5px solid var(--secondary-color);
-    font-size: 1.1rem;
-    color: #bbb;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
 }
 
-.donate-container h3 {
-    color: var(--secondary-color);
-    font-size: 2.5rem;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    text-shadow: var(--text-shadow);
+.donate-container ul li::before {
+    content: '✅';
+    margin-right: 10px;
 }
 
-.donate-options {
+.donate-options-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    justify-content: center;
+    margin-top: 40px;
 }
 
-.donate-card {
-    background: var(--card-bg);
+.donate-option {
+    background: var(--dark-bg);
     padding: 30px;
     border-radius: 10px;
-    border: 1px solid var(--primary-color);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center; /* Căn giữa nội dung thẻ */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     text-align: center;
+    border: 2px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.donate-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7), var(--glow-effect);
-    border-color: var(--secondary-color);
+.donate-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
-.donate-card h4 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
+.donate-option h3 {
+    color: var(--secondary-color);
+    font-size: 1.8em;
+    margin-top: 0;
     margin-bottom: 15px;
-    text-transform: uppercase;
 }
 
-.donate-card p {
-    font-size: 1.05rem;
-    color: #bbb;
-    flex-grow: 1; /* Cho phép đoạn văn bản chiếm không gian */
+.donate-option p {
+    font-size: 1em;
     margin-bottom: 20px;
 }
 
-.donate-card .bank-info p,
-.donate-card .momo-info p {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: var(--light-text);
-    text-align: left; /* Căn trái thông tin ngân hàng/momo */
-    width: 100%;
-}
-
-.donate-card .bank-info,
-.donate-card .momo-info {
-    margin-bottom: 20px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.2);
-    padding-top: 15px;
-    width: 100%;
-}
-
-.donate-card .momo-info img {
-    max-width: 150px; /* Kích thước tối đa cho QR code */
-    height: auto;
+.donate-option .btn {
+    width: 80%;
     margin-top: 15px;
-    border-radius: 5px;
 }
 
-.donate-card button {
-    background: var(--secondary-color);
-    color: #fff;
-    padding: 12px 25px;
-    border: none;
+.bank-info {
+    background: #3a3a3a;
+    padding: 20px;
     border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
-    font-weight: 600;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
-    margin-top: auto; /* Đẩy nút xuống dưới cùng nếu dùng flex column */
+    margin-top: 20px;
+    text-align: left;
+    border-left: 5px solid var(--primary-color);
 }
 
-.donate-card button:hover {
-    background: #e68a00;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(255, 152, 0, 0.6);
+.bank-info p {
+    margin-bottom: 8px;
 }
 
-.donate-card .note {
-    font-size: 0.9rem;
-    color: #999;
-    margin-top: 10px;
-    font-style: italic;
-}
-
-.thank-you h3 {
+.bank-info span {
+    font-weight: bold;
     color: var(--primary-color);
-    font-size: 2.8rem;
-    margin-top: 60px;
-    text-shadow: var(--glow-effect);
-    padding-top: 20px;
-    border-top: 3px solid var(--secondary-color);
 }
 
-/* Responsive for Donate Page */
+.thank-you-message {
+    margin-top: 50px;
+    padding: 30px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    animation: bounceIn 1s ease-out;
+}
+
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+}
+
+footer .footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+footer h4 {
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+footer p, footer a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 0.95em;
+    line-height: 1.8;
+}
+
+footer a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 1.5em;
+    color: var(--light-text);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .donate-container {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 10px 10px 10px;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.1em;
+    }
+
+    .main-section {
+        padding: 40px 15px;
+    }
+
+    .main-section h2 {
+        font-size: 2em;
+    }
+
+    .admin-team-grid, .donate-options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-container {
         padding: 30px;
-        width: 95%;
-        margin: 20px auto;
     }
-    .donate-container h2 {
-        font-size: 2.5rem;
+
+    footer .container {
+        flex-direction: column;
+        align-items: center;
     }
-    .donate-container p {
-        font-size: 1rem;
+
+    footer .footer-section {
+        margin-bottom: 30px;
+        text-align: center;
     }
-    .donate-container h3 {
-        font-size: 2rem;
-    }
-    .donate-options {
-        grid-template-columns: 1fr; /* Một cột trên màn hình nhỏ */
-    }
-    .donate-card {
-        padding: 20px;
-    }
-    .donate-card h4 {
-        font-size: 1.5rem;
-    }
-    .donate-card p {
-        font-size: 0.95rem;
-    }
-    .thank-you h3 {
-        font-size: 2rem;
+
+    .social-links {
+        margin-top: 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .donate-container h2 {
-        font-size: 2rem;
-    }
-    .donate-container h3 {
-        font-size: 1.8rem;
-    }
-    .donate-card button {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-}
-
-/* Falling Money Effect Specific Styles */
-#special-packages-card {
-    position: relative; /* Quan trọng để .falling-money-container có thể định vị tuyệt đối */
-    overflow: hidden; /* Giữ các tờ tiền bên trong khung */
+/* New styles for falling money effect */
+.special-packages-card {
+    position: relative; /* Essential for positioning children absolutely */
+    overflow: hidden; /* Ensures money bills don't spill out */
 }
 
 .falling-money-container {
@@ -1122,33 +632,61 @@ body.donate-page main {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    pointer-events: none; /* Đảm bảo không cản trở tương tác với các yếu tố khác */
-    z-index: 0; /* Đặt dưới nội dung card */
+    pointer-events: none; /* Allows interaction with content beneath */
+    z-index: 1; /* Place below X3 effect and other important content */
 }
 
 .money-bill {
     position: absolute;
-    background-image: url('https://i.imgur.com/example_money_bill.png'); /* **THAY THẾ BẰNG ĐƯỜNG DẪN ẢNH TỜ TIỀN CỦA BẠN** */
+    background-color: gold; /* Màu vàng giống tiền */
+    width: 30px; /* Kích thước mặc định */
+    height: 20px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    animation: fall linear infinite;
+    opacity: 0.8;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>'); /* Placeholder, consider a simple money bill image or detailed SVG */
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0;
-    animation: fall linear infinite;
-    filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.5)); /* Hiệu ứng phát sáng nhẹ */
+    background-position: center;
 }
 
 @keyframes fall {
     0% {
         transform: translateY(-100px) rotateZ(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
+        opacity: 0.8;
     }
     100% {
-        transform: translateY(calc(100% + 100px)) rotateZ(720deg);
+        transform: translateY(calc(100% + 100px)) rotateZ(360deg);
         opacity: 0;
+    }
+}
+
+/* New styles for X3 top-up effect */
+.x3-topup-effect {
+    position: absolute;
+    top: 10px; /* Điều chỉnh vị trí từ trên xuống */
+    right: 10px; /* Điều chỉnh vị trí từ phải vào */
+    background-color: var(--primary-color); /* Sử dụng màu đã định nghĩa */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 1.3em;
+    font-weight: bold;
+    animation: pulse 1.5s infinite alternate; /* Hiệu ứng nhấp nháy */
+    z-index: 10; /* Đảm bảo nó hiển thị trên cùng */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px var(--primary-color);
     }
 }
