@@ -146,3 +146,39 @@ if (hackReportForm) {
         });
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const specialPackagesCard = document.getElementById('special-packages-card');
+    if (specialPackagesCard) {
+        const fallingMoneyContainer = specialPackagesCard.querySelector('.falling-money-container');
+        const numberOfBills = 20; // Số lượng tờ tiền rơi đồng thời
+
+        function createMoneyBill() {
+            const moneyBill = document.createElement('div');
+            moneyBill.classList.add('money-bill');
+
+            const size = Math.random() * (40 - 20) + 20; // Kích thước ngẫu nhiên từ 20px đến 40px
+            moneyBill.style.width = `${size}px`;
+            moneyBill.style.height = `${size * 0.7}px`; // Giả sử tỉ lệ 100:70
+
+            const startX = Math.random() * 100; // Vị trí X ngẫu nhiên (0-100%)
+            moneyBill.style.left = `${startX}%`;
+
+            const animationDuration = Math.random() * (8 - 4) + 4; // Thời gian rơi ngẫu nhiên từ 4s đến 8s
+            moneyBill.style.animationDuration = `${animationDuration}s`;
+            moneyBill.style.animationDelay = `-${Math.random() * animationDuration}s`; // Tạo hiệu ứng rơi liên tục
+
+            fallingMoneyContainer.appendChild(moneyBill);
+
+            // Xóa tờ tiền sau khi nó rơi ra khỏi khung hình để tối ưu hiệu suất
+            moneyBill.addEventListener('animationend', () => {
+                moneyBill.remove();
+                createMoneyBill(); // Tạo lại một tờ tiền mới
+            });
+        }
+
+        // Tạo các tờ tiền ban đầu
+        for (let i = 0; i < numberOfBills; i++) {
+            createMoneyBill();
+        }
+    }
+});
