@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Your Minecraft Server</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-page">
+    <header>
+        <div class="container">
+            <h1>Admin Panel</h1>
+            <nav>
+                <ul>
+                    <li><a href="admin.html#hack-reports">Quản Lý Tố Cáo Hack</a></li>
+                    <li><a href="admin.html#user-management">Quản Lý Người Dùng</a></li>
+                    <li><a href="#" id="admin-logout">Đăng Xuất</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="hack-reports">
+            <h2>Tố Cáo Hack Chờ Xử Lý</h2>
+            <div id="report-list">
+                <p>Chưa có tố cáo hack nào.</p>
+            </div>
+        </section>
+
+        <section id="user-management">
+            <h2>Quản Lý Người Dùng</h2>
+            <p>Đây là nơi bạn có thể quản lý tài khoản người dùng, ban/unban, v.v. (cần backend).</p>
+            </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Minecraft Server Admin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+/* General Styling */
+:root {
+    --primary-color: #00bcd4; /* Cyan - Màu chủ đạo, tươi sáng */
+    --secondary-color: #ff9800; /* Orange - Màu phụ đạo, nổi bật */
+    --dark-bg: #1a1a1a; /* Nền tối sâu */
+    --light-text: #e0e0e0; /* Chữ sáng */
+    --card-bg: #2b2b2b; /* Nền card tối hơn */
+    --border-color: #00bcd4; /* Viền theo màu primary */
+    --hover-bg: #0097a7; /* Màu hover của primary */
+    --button-shadow: 0 5px 15px rgba(0, 188, 212, 0.4); /* Shadow cho nút */
+    --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Shadow cho chữ */
+    --glow-effect: 0 0 15px rgba(0, 188, 212, 0.6); /* Hiệu ứng phát sáng */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; /* Font hiện đại hơn */
+    margin: 0;
+    padding: 0;
+    background: var(--dark-bg) url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--light-text);
+    line-height: 1.8;
+    position: relative; /* Cho các hiệu ứng overlay */
+    overflow-x: hidden; /* Tránh scroll ngang */
+}
+
+/* Overlay cho background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Lớp phủ mờ */
+    backdrop-filter: blur(3px); /* Hiệu ứng blur nhẹ */
+    z-index: -1;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Header & Navigation */
+header {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 1.2rem 0;
+    border-bottom: 3px solid var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2.5rem;
+    font-weight: 700;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-shadow: var(--text-shadow);
+}
+
+header h1 a:hover {
+    color: var(--primary-color);
+    text-shadow: var(--glow-effect);
+}
+
+header nav {
+    float: right;
+    margin-top: 15px;
+}
+
+header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header li {
+    display: inline;
+    padding: 0 20px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.15rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+header a:hover {
+    color: var(--secondary-color);
+    text-shadow: var(--glow-effect);
+}
+
+/* Hero Section */
+#hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: var(--text-shadow);
+    padding: 50px 0;
+}
+
+#hero .container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px 60px;
+    border-radius: 15px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 25px rgba(0, 188, 212, 0.5);
+    animation: fadeIn 1.5s ease-out;
+}
+
+#hero h2 {
+    font-size: 4.2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+}
+
+#hero p {
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+#hero button {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: var(--button-shadow);
+    letter-spacing: 1px;
+}
+
+#hero button:hover {
+    background: var(--hover-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
+}
+
+/* Main Content Sections */
+main section {
+    background: rgba(0, 0, 0, 0.8);
+    margin-bottom: 40px;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-color);
+    animation: slideInUp 1s ease-out;
+}
+
+main h2 {
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 3rem;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 15px;
+    display: inline-block;
+    width: 100%;
+    text-shadow: var(--text-shadow);
+    letter-spacing: 1px;
+}
+
+/* Admin List */
+.admin-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.admin-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6), var(--glow-effect);
+}
+
+.admin-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.admin-card p {
+    font-size: 1.1rem;
+    color: #bbb;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="url"],
+form textarea {
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #3a3a3a;
+    color: var(--light-text);
+    font-size: 1.1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: #999;
+}
+
+form button[type="submit"] {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: var(--button-shadow);
+}
+
+form button[type="submit"]:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 188, 212, 0.5);
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
+    border-top: 3px solid var(--primary-color);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+}
+
+footer p {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+/* Auth Pages (Login/Register) */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.auth-container {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 188, 212, 0.6);
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    border: 2px solid var(--primary-color);
+    animation: fadeInScale 1s ease-out;
+}
+
+.auth-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 35px;
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    text-shadow: var(--text-shadow);
+}
+
+.auth-container p {
+    margin-top: 25px;
+    font-size: 1.1rem;
+}
+
+.auth-container a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.auth-container a:hover {
+    color: #ffc107;
+    text-decoration: underline;
+}
+
+/* Admin Panel Specific Styling */
+.admin-page main section {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-color);
+}
+
+#report-list .report-item {
+    background: var(--card-bg);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+}
+
+#report-list .report-item:hover {
+    transform: translateY(-3px);
+}
+
+#report-list .report-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+}
+
+#report-list .report-item p {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+#report-list .report-item button {
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+}
+
+#report-list .report-item button:hover {
+    background: #e68a00;
+    transform: translateY(-2px);
+}
+
+#report-list .report-item button.delete {
+    background: #d32f2f; /* Red for delete */
+}
+
+#report-list .report-item button.delete:hover {
+    background: #b71c1c;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px 0;
+    }
+
+    header h1 {
+        float: none;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    header nav {
+        float: none;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    header li {
+        display: block;
+        padding: 8px 0;
+    }
+
+    #hero h2 {
+        font-size: 3rem;
+    }
+
+    #hero p {
+        font-size: 1.3rem;
+    }
+
+    #hero button {
+        font-size: 1.2rem;
+        padding: 12px 25px;
+    }
+
+    main section {
+        padding: 30px;
+    }
+
+    main h2 {
+        font-size: 2.2rem;
+    }
+
+    .admin-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .admin-card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .auth-container {
+        width: 95%;
+        padding: 30px;
+    }
+
+    form {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero h2 {
+        font-size: 2.5rem;
+    }
+    #hero p {
+        font-size: 1rem;
+    }
+    main h2 {
+        font-size: 1.8rem;
+    }
+    .admin-card h3 {
+        font-size: 1.5rem;
+    }
+    .auth-container h2 {
+        font-size: 2.2rem;
+    }
+}

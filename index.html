@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minekd</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/https://scontent.fhan4-4.fna.fbcdn.net/v/t1.15752-9/515949007_2551715811844074_3479194416650920203_n.jpg?stp=dst-jpg_s100x100_tt6&_nc_cat=110&ccb=1-7&_nc_sid=b70caf&_nc_eui2=AeFXDaXgvMAb6kWMw0UK-WvMid7GDZMI6uaJ3sYNkwjq5kixGtaI3T5YUcz3eX8Z1LKK5HW_fnS8j_WtRXWm4P42&_nc_ohc=SKTp6t8nwqkQ7kNvwGFKLHf&_nc_oc=AdnD-kdE64hvy6IB1vjLyDqiOvbtoi4Oox0SO5mBBqGPWK-BNcjD265HMR_2LDV-FldWR9LQFH_Jtdh3hPR1she-&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhan4-4.fna&oh=03_Q7cD2wExXeNdwQlFzF2vfhSTnn1BBOT7ODqWh3wTjtE0AAX-Ug&oe=689AA712" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">Minekd.VN</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#about">Giới Thiệu</a></li>
+                    <li><a href="index.html#admins">Admins</a></li>
+                    <li><a href="index.html#report-hack">Tố Cáo Hack</a></li>
+                    <li><a href="register.html">Đăng Ký</a></li>
+                    <li><a href="login.html">Đăng Nhập</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h2>Chào Mừng Đến Với Server Minecraft Của Chúng Tôi!</h2>
+                <p>Tham gia ngay để trải nghiệm thế giới đầy phiêu lưu và sáng tạo.</p>
+                <button onclick="window.location.href='login.html'">Chơi Ngay</button>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2>Giới Thiệu</h2>
+            <p>Server Minecraft của chúng tôi mang đến một môi trường chơi game công bằng và thú vị. Với nhiều chế độ chơi độc đáo và cộng đồng thân thiện, bạn sẽ không bao giờ cảm thấy buồn chán.</p>
+            <p>Chúng tôi cam kết duy trì một server không hack, nơi mọi người có thể tận hưởng trò chơi một cách trọn vẹn nhất.</p>
+        </section>
+
+        <section id="admins" class="container">
+            <h2>Đội Ngũ Admin</h2>
+            <div class="admin-list">
+                <div class="admin-card">
+                    <h3>OWNER</h3>
+                    <p>khduy</p>
+                </div>
+                <div class="admin-card">
+                    <h3>OWNER </h3>
+                    <p>cuongtdayy</p>
+                </div>
+                <div class="admin-card">
+                    <h3>OWNER</h3>
+                    <p>noob_propvee</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="report-hack" class="container">
+            <h2>Tố Cáo Hack</h2>
+            <p>Nếu bạn phát hiện bất kỳ hành vi gian lận nào, hãy tố cáo ngay lập tức để giữ gìn môi trường chơi game lành mạnh.</p>
+            <form id="hackReportForm">
+                <label for="player-name">Tên Người Chơi Bị Tố Cáo:</label>
+                <input type="text" id="player-name" name="player-name" required>
+
+                <label for="hack-type">Loại Hack:</label>
+                <input type="text" id="hack-type" name="hack-type" required>
+
+                <label for="evidence">Bằng Chứng (Link video/ảnh):</label>
+                <input type="url" id="evidence" name="evidence">
+
+                <label for="description">Mô Tả Chi Tiết:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+                <form id="hackReportForm">
+                    <button type="submit">Gửi Tố Cáo</button>
+                </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Minecraft Server. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
