@@ -36,40 +36,28 @@ if (hackReportForm) {
 }
             playClickSound(); // Phát âm thanh click
 
-            const playerName = document.getElementById('player-name').value;
-            const hackType = document.getElementById('hack-type').value;
+            const playerName = document.getElementById('player').value;
+            const hackType = document.getElementById('hackType').value;
             const evidence = document.getElementById('evidence').value;
             const description = document.getElementById('description').value;
 
-            const reportData = { playerName, hackType, evidence, description };
-
             try {
-                // Gửi dữ liệu tố cáo đến backend server của bạn
-                // THAY ĐỔI 'http://localhost:3000/api/report-hack' thành URL API thực tế của bạn
-                const response = await fetch('http://localhost:3000/api/report-hack', {
+                const response = await fetch('http://localhost:3000/api/report-hack', { // Thay đổi URL
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(reportData)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ playerName, hackType, evidence, description })
                 });
 
-                if (response.ok) { // Nếu request thành công (status 200-299)
-                    alert('Tố cáo hack đã được gửi thành công! Admin sẽ xem xét sớm nhất.'); // Vẫn giữ thông báo thành công
-                    hackReportForm.reset();
-                    
-                    // CHUYỂN HƯỚNG SANG TRANG ADMIN SAU KHI GỬI THÀNH CÔNG
-                    window.location.href = 'admin.html'; 
-
+                if (response.ok) {
+                    alert('Báo cáo tố cáo thành công!');
+                    window.location.href = 'admin.html'; // Chuyển hướng về trang admin
                 } else {
-                    // Lỗi từ server (ví dụ: status 400, 500)
                     const errorResponse = await response.text();
-                    console.error('Server error submitting hack report:', response.status, errorResponse);
+                    console.error('Server error during report:', response.status, errorResponse);
                     // KHÔNG HIỂN THỊ THÔNG BÁO LỖI CHO NGƯỜI DÙNG
                 }
             } catch (error) {
-                // Lỗi mạng (không kết nối được đến server)
-                console.error('Network error submitting hack report:', error);
+                console.error('Network error during report:', error);
                 // KHÔNG HIỂN THỊ THÔNG BÁO LỖI CHO NGƯỜI DÙNG
             }
         });
@@ -85,10 +73,10 @@ if (hackReportForm) {
             const username = document.getElementById('reg-username').value;
             const email = document.getElementById('reg-email').value;
             const password = document.getElementById('reg-password').value;
-            const confirmPassword = document.getElementById('reg-confirm-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
 
             if (password !== confirmPassword) {
-                alert('Mật khẩu xác nhận không khớp!'); // Vẫn giữ thông báo lỗi logic này
+                alert('Mật khẩu xác nhận không khớp!');
                 return;
             }
 
@@ -101,7 +89,7 @@ if (hackReportForm) {
 
                 if (response.ok) {
                     alert('Đăng ký thành công! Vui lòng đăng nhập.');
-                    window.location.href = 'login.html'; // Chuyển hướng đến trang đăng nhập
+                    window.location.href = 'login.html'; // Chuyển hướng về trang đăng nhập
                 } else {
                     const errorResponse = await response.text();
                     console.error('Server error during registration:', response.status, errorResponse);
@@ -113,6 +101,7 @@ if (hackReportForm) {
             }
         });
     }
+
     // Handle Login Form Submission
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
@@ -144,8 +133,8 @@ if (hackReportForm) {
             }
         });
     }
-});
-document.addEventListener('DOMContentLoaded', () => {
+
+    // Script for falling money effect on Special Packages Card
     const specialPackagesCard = document.getElementById('special-packages-card');
     if (specialPackagesCard) {
         const fallingMoneyContainer = specialPackagesCard.querySelector('.falling-money-container');
