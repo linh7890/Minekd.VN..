@@ -1,1 +1,453 @@
+/* General Styling */
+:root {
+    --primary-color: #00bcd4; /* Cyan - Màu chủ đạo, tươi sáng */
+    --secondary-color: #ff9800; /* Orange - Màu phụ đạo, nổi bật */
+    --dark-bg: #1a1a1a; /* Nền tối sâu */
+    --light-text: #e0e0e0; /* Chữ sáng */
+    --card-bg: #2b2b2b; /* Nền card tối hơn */
+    --border-color: #00bcd4; /* Viền theo màu primary */
+    --hover-bg: #0097a7; /* Màu hover của primary */
+    --button-shadow: 0 5px 15px rgba(0, 188, 212, 0.4); /* Shadow cho nút */
+    --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Shadow cho chữ */
+    --glow-effect: 0 0 15px rgba(0, 188, 212, 0.6); /* Hiệu ứng phát sáng */
+    --secondary-glow: 0 0 12px rgba(255, 152, 0, 0.6); /* Hiệu ứng phát sáng phụ */
+    --danger-color: #d32f2f; /* Màu đỏ cho hành động nguy hiểm */
+    --warning-color: #fbc02d; /* Màu vàng cho cảnh báo */
+}
 
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    line-height: 1.6;
+    background-image: url('https://www.transparenttextures.com/patterns/dark-fish-skin.png'); /* You might need to update this URL */
+    background-attachment: fixed;
+    transition: background-color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Cho phép các mục xuống dòng trên màn hình nhỏ */
+}
+
+.header-logo {
+    height: 50px; /* Điều chỉnh kích thước logo */
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 25px;
+}
+
+header nav ul li a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Menu Toggle Button for Mobile */
+.menu-toggle {
+    display: none; /* Mặc định ẩn trên desktop */
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    z-index: 1001; /* Đảm bảo nút nằm trên menu khi mở */
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1500x800?text=Minecraft+Server+Hero') no-repeat center center/cover; /* Thay thế URL ảnh nền */
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+}
+
+#hero h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: var(--text-shadow);
+    color: var(--primary-color);
+}
+
+#hero p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--button-shadow);
+}
+
+.primary-btn:hover {
+    background: var(--hover-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
+}
+
+.secondary-btn {
+    background: var(--secondary-color);
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+}
+
+.secondary-btn:hover {
+    background: #e68a00;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(255, 152, 0, 0.6);
+}
+
+/* Section Styles */
+section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.info-section {
+    background-color: var(--card-bg);
+    color: var(--light-text);
+}
+
+.dark-section {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.report-section {
+    background-color: var(--card-bg);
+    color: var(--light-text);
+}
+
+section h2 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    text-shadow: var(--glow-effect);
+}
+
+/* Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.info-card {
+    background: var(--dark-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 188, 212, 0.3);
+}
+
+.info-card i {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.info-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    font-size: 1.1rem;
+    color: #bbb;
+}
+
+/* Admin Grid */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.admin-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.admin-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.admin-card:hover img {
+    transform: scale(1.05);
+}
+
+.admin-card h3 {
+    font-size: 1.9rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.admin-card p {
+    font-size: 1.1rem;
+    color: #bbb;
+}
+
+/* Report Form */
+.report-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    background: var(--dark-bg);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.report-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.report-form input[type="text"],
+.report-form input[type="url"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #333;
+    color: var(--light-text);
+    font-size: 1rem;
+}
+
+.report-form input::placeholder {
+    color: #888;
+}
+
+.report-form button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    background: #111;
+    color: #ddd;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+footer .footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-links, .footer-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+footer h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: var(--secondary-color);
+}
+
+footer ul li a i {
+    margin-right: 8px;
+}
+
+footer p {
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    #hero h2 {
+        font-size: 3rem;
+    }
+    #hero p {
+        font-size: 1.1rem;
+    }
+    section h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: block; /* Hiển thị nút hamburger trên màn hình nhỏ */
+    }
+
+    header nav {
+        position: fixed;
+        top: 0;
+        right: -300px; /* Ẩn menu bên ngoài màn hình */
+        width: 280px;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding-top: 80px; /* Khoảng cách từ trên xuống cho menu */
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
+        display: block; /* Đảm bảo nav là block để ul có thể căn giữa */
+    }
+
+    header nav ul {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul li {
+        margin: 20px 0;
+    }
+
+    /* Khi menu được mở */
+    body.nav-open header nav {
+        right: 0; /* Hiện menu */
+    }
+
+    /* Overlay khi menu mở */
+    body.nav-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        cursor: pointer;
+    }
+
+    .info-grid, .admin-grid {
+        grid-template-columns: 1fr; /* Một cột trên màn hình nhỏ */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero h2 {
+        font-size: 2.5rem;
+    }
+    section h2 {
+        font-size: 2rem;
+    }
+    .hero-content {
+        padding: 15px;
+    }
+}
