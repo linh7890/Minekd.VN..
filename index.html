@@ -15,16 +15,18 @@
             <h1>
                 <a href="#">
                     <img src="images/logo.png" alt="MineKD MC Server Logo" class="header-logo">
-                    </a>
+                </a>
             </h1>
-            <nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i> </div>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="#hero">Trang Chủ</a></li>
                     <li><a href="#admins">Đội Ngũ Admin</a></li>
                     <li><a href="#hack-report">Tố Cáo Hack</a></li>
                     <li><a href="login.html">Đăng Nhập</a></li>
                     <li><a href="register.html">Đăng Ký</a></li>
-                    <li><a href="donate.html">donate</a></li>
+                    <li><a href="donate.html">Ủng Hộ</a></li>
                 </ul>
             </nav>
         </div>
@@ -32,68 +34,82 @@
 
     <section id="hero">
         <div class="container">
-            <h2>Chào Mừng Đến Với MineCraft Server</h2>
-            <p>Trải nghiệm thế giới Minecraft đỉnh cao cùng những người bạn! Tham gia cộng đồng của chúng tôi ngay hôm nay.</p>
-            <button onclick="window.location.href='#hack-report'">Tố Cáo Hack Ngay!</button>
+            <div class="hero-content">
+                <h2>Chào Mừng Đến Với MineKD MC Server!</h2>
+                <p>Nơi cuộc phiêu lưu Minecraft của bạn bắt đầu. Tham gia cùng hàng ngàn người chơi khác!</p>
+                <a href="#server-info" class="btn primary-btn">Tìm hiểu thêm</a>
+            </div>
         </div>
     </section>
-<section id="admins">
+
+    <section id="server-info" class="info-section">
         <div class="container">
-            <h2>Đội Ngũ Admin & Quản Lý</h2>
-            <div class="admin-list">
-                <div class="admin-card">
-                    <h3>[OWNER] Khduy</h3>
-                    <p>Người sáng lập & Quản lý máy chủ chính. Chuyên gia về plugin và bảo mật. Luôn sẵn lòng hỗ trợ người chơi.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Máy Chủ Ổn Định</h3>
+                    <p>Luôn hoạt động 24/7 với đường truyền tốc độ cao.</p>
                 </div>
-                <div class="admin-card">
-                    <h3>[OWNER] cuongtdayy</h3>
-                    <p>Quản lý cộng đồng & Giám sát game. Đảm bảo môi trường chơi game lành mạnh và công bằng cho mọi người.</p>
+                <div class="info-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Cộng Đồng Lớn Mạnh</h3>
+                    <p>Hàng ngàn người chơi thân thiện và năng động.</p>
                 </div>
-                <div class="admin-card">
-                    <h3>[co-owner] Đăng</h3>
-                    <p>Nhà phát triển Plugin & Discord. Liên tục cải thiện trải nghiệm chơi game với các tính năng mới.</p>
+                <div class="info-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>An Toàn & Công Bằng</h3>
+                    <p>Hệ thống chống hack mạnh mẽ, đội ngũ admin chuyên nghiệp.</p>
                 </div>
-                <div class="admin-card">
-                    <h3>[Admin] VÔ Danh </h3>
-                    <p>Quản lý cộng đồng & Giám sát game. Đảm bảo môi trường chơi game lành mạnh và công bằng cho mọi người.</p>
-                </div>
-                <div class="admin-card">
-                    <h3>[Dev-Staff] lehanh và lux_mc</h3>
-                    <p>Người quản lý những sử việc và hộ trợ trong server</p>
-                </div>
-                <div class="admin-card">
-                    <h3>[TRADER] Hoài Linh</h3>
-                    <p>Người làm NHỮNG MÔN TRADER VÀ MÓN ĐỒ CHO SERVER</p>
+                <div class="info-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Nhiều Chế Độ Chơi</h3>
+                    <p>Sinh tồn, Skyblock, Faction và nhiều hơn nữa!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="hack-report">
+    <section id="admins" class="dark-section">
         <div class="container">
-            <h2>Gửi Tố Cáo Hack</h2>
-            <form id="hackReportForm">
+            <h2>Đội Ngũ Admin</h2>
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <img src="images/admin1.png" alt="Admin Alex">
+                    <h3>Alex "The Builder"</h3>
+                    <p>Chuyên gia xây dựng và thiết kế bản đồ.</p>
+                </div>
+                <div class="admin-card">
+                    <img src="images/admin2.png" alt="Admin Nova">
+                    <h3>Nova "The Coder"</h3>
+                    <p>Phát triển plugin và tối ưu hóa server.</p>
+                </div>
+                <div class="admin-card">
+                    <img src="images/admin3.png" alt="Admin Echo">
+                    <h3>Echo "The Guardian"</h3>
+                    <p>Giám sát an ninh và chống hack.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hack-report" class="report-section">
+        <div class="container">
+            <h2>Tố Cáo Hack</h2>
+            <p>Phát hiện người chơi sử dụng hack? Hãy tố cáo ngay để server luôn công bằng!</p>
+            <form id="hackReportForm" class="report-form">
                 <label for="player-name">Tên người chơi bị tố cáo:</label>
-                <input type="text" id="player-name" name="playerName" placeholder="Ví dụ: PlayerCheater123" required>
+                <input type="text" id="player-name" name="playerName" required>
 
                 <label for="hack-type">Loại hack:</label>
-                <select id="hack-type" name="hackType" required>
-                    <option value="">-- Chọn loại hack --</option>
-                    <option value="killaura">KillAura</option>
-                    <option value="fly-hack">Fly Hack</option>
-                    <option value="speed-hack">Speed Hack</option>
-                    <option value="x-ray">X-Ray</option>
-                    <option value="anti-kb">Anti-Knockback</option>
-                    <option value="other">Khác (Mô tả chi tiết)</option>
-                </select>
+                <input type="text" id="hack-type" name="hackType" required>
 
-                <label for="evidence">Đường dẫn bằng chứng (Video/Ảnh):</label>
-                <input type="url" id="evidence" name="evidence" placeholder="Ví dụ: http://youtube.com/link_video_bang_chung" required>
+                <label for="evidence">Bằng chứng (link video/ảnh):</label>
+                <input type="url" id="evidence" name="evidence" placeholder="https://youtube.com/..." required>
 
-                <label for="description">Mô tả chi tiết:</label>
-                <textarea id="description" name="description" rows="6" placeholder="Mô tả cụ thể hành vi hack, thời gian, địa điểm, v.v." required></textarea>
+                <label for="reporter-name">Tên bạn (tùy chọn):</label>
+                <input type="text" id="reporter-name" name="reporterName">
 
-                <button type="submit">Gửi Tố Cáo</button>
+                <button type="submit" class="btn secondary-btn">Gửi Tố Cáo</button>
             </form>
         </div>
     </section>
