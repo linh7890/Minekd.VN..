@@ -10,6 +10,9 @@
     --button-shadow: 0 5px 15px rgba(0, 188, 212, 0.4); /* Shadow cho nút */
     --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Shadow cho chữ */
     --glow-effect: 0 0 15px rgba(0, 188, 212, 0.6); /* Hiệu ứng phát sáng */
+    --secondary-glow: 0 0 12px rgba(255, 152, 0, 0.6); /* Hiệu ứng phát sáng phụ */
+    --danger-color: #d32f2f; /* Màu đỏ cho hành động nguy hiểm */
+    --warning-color: #fbc02d; /* Màu vàng cho cảnh báo */
 }
 
 html {
@@ -28,7 +31,7 @@ body {
     overflow-x: hidden; /* Tránh scroll ngang */
 }
 
-/* Overlay cho background */
+/* Overlay cho background - Tạo lớp phủ để chữ dễ đọc hơn và thêm blur nhẹ */
 body::before {
     content: '';
     position: absolute;
@@ -65,6 +68,9 @@ header h1 {
     float: left;
     margin: 0;
     padding: 0;
+    height: auto; 
+    display: flex;
+    align-items: center;
 }
 
 header h1 a {
@@ -72,14 +78,32 @@ header h1 a {
     text-decoration: none;
     font-size: 2.5rem;
     font-weight: 700;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
     text-shadow: var(--text-shadow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* CSS cho Logo */
+.header-logo {
+    height: 60px; /* Chiều cao cố định cho logo */
+    width: auto; /* Chiều rộng tự động để giữ tỷ lệ */
+    vertical-align: middle; /* Căn chỉnh với văn bản nếu có */
+    transition: transform 0.3s ease-out, filter 0.3s ease-out; /* Thêm transition cho hover */
+    filter: drop-shadow(0 0 8px rgba(0, 188, 212, 0.7)); /* Hiệu ứng đổ bóng phát sáng cho logo */
+}
+
+header h1 a:hover .header-logo {
+    transform: scale(1.05) rotate(2deg); /* Phóng to nhẹ và xoay nhẹ khi hover */
+    filter: drop-shadow(0 0 15px rgba(255, 152, 0, 0.9)); /* Đổi màu glow khi hover */
 }
 
 header h1 a:hover {
     color: var(--primary-color);
     text-shadow: var(--glow-effect);
 }
+
 
 header nav {
     float: right;
@@ -103,12 +127,13 @@ header a {
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1.15rem;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color 0.3s ease-out, text-shadow 0.3s ease-out, transform 0.2s ease-out;
 }
 
 header a:hover {
     color: var(--secondary-color);
-    text-shadow: var(--glow-effect);
+    text-shadow: var(--secondary-glow);
+    transform: translateY(-2px);
 }
 
 /* Hero Section */
@@ -129,8 +154,23 @@ header a:hover {
     border-radius: 15px;
     border: 2px solid var(--primary-color);
     box-shadow: 0 0 25px rgba(0, 188, 212, 0.5);
-    animation: fadeIn 1.5s ease-out;
+    animation: fadeIn 1.5s ease-out forwards;
+    position: relative;
+    overflow: hidden;
 }
+
+#hero .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
 
 #hero h2 {
     font-size: 4.2rem;
@@ -154,17 +194,35 @@ header a:hover {
     border-radius: 8px;
     font-size: 1.5rem;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
     font-weight: 700;
     text-transform: uppercase;
     box-shadow: var(--button-shadow);
     letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    transition: all 0.4s ease-out;
+}
+
+#hero button:hover::before {
+    left: 100%;
 }
 
 #hero button:hover {
     background: var(--hover-bg);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 188, 212, 0.8);
 }
 
 /* Main Content Sections */
@@ -175,8 +233,24 @@ main section {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     border: 1px solid var(--border-color);
-    animation: slideInUp 1s ease-out;
+    animation: slideInUp 1s ease-out forwards;
+    position: relative;
+    overflow: hidden;
 }
+
+main section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    z-index: -1;
+    border-radius: 17px;
+    filter: blur(4px);
+}
+
 
 main h2 {
     color: var(--secondary-color);
@@ -190,14 +264,19 @@ main h2 {
     width: 100%;
     text-shadow: var(--text-shadow);
     letter-spacing: 1px;
+    background: linear-gradient(to right, var(--secondary-color), #ffc107);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 /* Admin List */
 .admin-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
+    display: grid; /* Sử dụng Grid cho bố cục thẳng hàng */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Tự động căn chỉnh cột */
+    gap: 30px; /* Khoảng cách giữa các card */
+    justify-content: center; /* Căn giữa các card nếu có ít hơn 3 cột */
+    align-items: stretch; /* Đảm bảo các card có chiều cao bằng nhau */
 }
 
 .admin-card {
@@ -205,26 +284,84 @@ main h2 {
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-    width: 300px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+    display: flex; /* Sử dụng flex để căn chỉnh nội dung bên trong card */
+    flex-direction: column;
+    justify-content: space-between; /* Đẩy tiêu đề và nội dung ra hai phía */
+}
+
+.admin-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease-out;
+    z-index: 1;
+}
+
+.admin-card:hover::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0.2;
 }
 
 .admin-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6), var(--glow-effect);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7), var(--glow-effect);
+    border-color: var(--secondary-color);
 }
 
 .admin-card h3 {
     color: var(--primary-color);
     margin-bottom: 15px;
     font-size: 1.8rem;
+    position: relative;
+    z-index: 2;
+    /* Cập nhật màu sắc tiêu đề dựa trên vai trò */
+    background: linear-gradient(to right, var(--primary-color), #80d4f4); /* Màu gradient mặc định cho OWNER */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block; /* Quan trọng cho gradient text */
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 188, 212, 0.3); /* Viền dưới nhẹ */
 }
+
+/* Các màu cụ thể cho vai trò */
+.admin-card h3:contains("[OWNER]") {
+    background: linear-gradient(to right, #4CAF50, #81c784); /* Green gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.admin-card h3:contains("[STAFF]") {
+    background: linear-gradient(to right, #2196F3, #64b5f6); /* Blue gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.admin-card h3:contains("[TRADER]") {
+    background: linear-gradient(to right, #FFC107, #ffd54f); /* Amber gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
 .admin-card p {
     font-size: 1.1rem;
     color: #bbb;
+    position: relative;
+    z-index: 2;
+    flex-grow: 1; /* Cho phép đoạn văn bản chiếm hết không gian còn lại */
+    text-align: justify; /* Căn đều chữ */
+    margin-top: 15px;
 }
 
 /* Forms */
@@ -238,6 +375,20 @@ form {
     border-radius: 10px;
     border: 1px solid var(--border-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, rgba(0, 188, 212, 0.05), rgba(255, 152, 0, 0.02));
+    z-index: -1;
+    pointer-events: none;
 }
 
 form label {
@@ -251,7 +402,8 @@ form input[type="text"],
 form input[type="email"],
 form input[type="password"],
 form input[type="url"],
-form textarea {
+form textarea,
+form select {
     padding: 15px;
     margin-bottom: 25px;
     border: 1px solid var(--border-color);
@@ -260,13 +412,14 @@ form textarea {
     color: var(--light-text);
     font-size: 1.1rem;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
 form input:focus,
-form textarea:focus {
+form textarea:focus,
+form select:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
+    box-shadow: 0 0 12px rgba(0, 188, 212, 0.8);
 }
 
 form input::placeholder,
@@ -282,16 +435,18 @@ form button[type="submit"] {
     border-radius: 8px;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
     font-weight: 600;
     text-transform: uppercase;
     box-shadow: var(--button-shadow);
+    position: relative;
+    overflow: hidden;
 }
 
 form button[type="submit"]:hover {
     background: var(--hover-bg);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 188, 212, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
 }
 
 /* Footer */
@@ -305,9 +460,66 @@ footer {
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
 }
 
-footer p {
+/* Footer Content Styling */
+footer .footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px 0;
+    text-align: left;
+}
+
+footer .footer-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-shadow: var(--text-shadow);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+footer .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer .footer-links li {
+    margin-bottom: 12px;
+}
+
+footer .footer-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease-out, transform 0.2s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+footer .footer-links a i {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+    transition: color 0.3s ease-out;
+}
+
+footer .footer-links a:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+footer .footer-links a:hover i {
+    color: var(--primary-color);
+}
+
+footer .footer-info p {
+    margin-bottom: 10px;
     font-size: 1rem;
-    color: #aaa;
+    color: #bbb;
 }
 
 /* Auth Pages (Login/Register) */
@@ -329,7 +541,21 @@ footer p {
     width: 100%;
     max-width: 450px;
     border: 2px solid var(--primary-color);
-    animation: fadeInScale 1s ease-out;
+    animation: fadeInScale 1s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(255, 152, 0, 0.05));
+    z-index: -1;
+    pointer-events: none;
 }
 
 .auth-container h2 {
@@ -337,7 +563,7 @@ footer p {
     margin-bottom: 35px;
     font-size: 2.8rem;
     text-transform: uppercase;
-    text-shadow: var(--text-shadow);
+    text-shadow: var(--glow-effect);
 }
 
 .auth-container p {
@@ -349,15 +575,16 @@ footer p {
     color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
 }
 
 .auth-container a:hover {
     color: #ffc107;
     text-decoration: underline;
+    text-shadow: var(--secondary-glow);
 }
 
-/* Admin Panel Specific Styling */
+/* Admin Panel Specific Styling (for admin.html, but included here for completeness) */
 .admin-page main section {
     background: rgba(0, 0, 0, 0.9);
     padding: 40px;
@@ -365,6 +592,21 @@ footer p {
     margin-top: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-page main section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    z-index: -1;
+    border-radius: 17px;
+    filter: blur(4px);
 }
 
 #report-list .report-item {
@@ -374,49 +616,94 @@ footer p {
     border-radius: 10px;
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+    display: grid; /* Sử dụng Grid để căn chỉnh các mục con */
+    grid-template-columns: 1fr 1fr; /* 2 cột cho thông tin */
+    gap: 10px 20px; /* Khoảng cách giữa các hàng và cột */
+    align-items: start; /* Căn chỉnh các mục theo chiều dọc */
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 70px; /* Đủ chỗ cho nút điều khiển ở dưới */
 }
 
 #report-list .report-item:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.6), var(--secondary-glow);
+    border-color: var(--secondary-color);
 }
 
-#report-list .report-item h3 {
+#report-list .report-item h3 { /* Tên người chơi */
     color: var(--primary-color);
+    font-size: 1.8rem;
+    grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng */
     margin-bottom: 10px;
-    font-size: 1.6rem;
+    text-align: left;
+    background: linear-gradient(to right, var(--primary-color), #80d4f4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline;
 }
 
 #report-list .report-item p {
     margin-bottom: 8px;
     font-size: 1rem;
     color: #ccc;
+    text-align: left;
+}
+
+#report-list .report-item p strong { /* Tăng độ nổi bật cho nhãn */
+    color: var(--secondary-color);
+    margin-right: 5px;
+}
+
+#report-list .report-item a { /* Định dạng link bằng chứng */
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease-out;
+}
+
+#report-list .report-item a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+#report-list .report-item .report-actions {
+    grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng */
+    display: flex;
+    justify-content: flex-end; /* Đẩy nút sang phải */
+    position: absolute; /* Đặt vị trí tuyệt đối */
+    bottom: 20px; /* Cách đáy 20px */
+    right: 20px; /* Cách phải 20px */
 }
 
 #report-list .report-item button {
-    background: var(--secondary-color);
-    color: #fff;
+    background: var(--warning-color); /* Màu vàng cho Xử lý */
+    color: #333;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 15px;
-    transition: background 0.3s ease, transform 0.2s ease;
+    margin-left: 15px; /* Điều chỉnh thành margin-left thay vì margin-right */
+    transition: background 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
     font-weight: 600;
 }
 
 #report-list .report-item button:hover {
-    background: #e68a00;
+    background: #e4a700; /* Màu vàng đậm hơn khi hover */
     transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
 }
 
 #report-list .report-item button.delete {
-    background: #d32f2f; /* Red for delete */
+    background: var(--danger-color); /* Màu đỏ cho Xóa */
+    color: #fff;
 }
 
 #report-list .report-item button.delete:hover {
-    background: #b71c1c;
+    background: #a91f1f;
+    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
 }
+
 
 /* Keyframe Animations */
 @keyframes fadeIn {
@@ -445,6 +732,14 @@ footer p {
         float: none;
         text-align: center;
         font-size: 2rem;
+    }
+
+    header h1 a {
+        justify-content: center; 
+    }
+
+    .header-logo {
+        height: 50px;
     }
 
     header nav {
@@ -480,12 +775,13 @@ footer p {
     }
 
     .admin-list {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr; /* Một cột duy nhất trên mobile */
+        justify-items: center; /* Căn giữa các card */
     }
 
     .admin-card {
         width: 90%;
+        max-width: 350px; /* Giới hạn chiều rộng trên mobile */
         padding: 20px;
     }
 
@@ -496,6 +792,46 @@ footer p {
 
     form {
         padding: 20px;
+    }
+
+    footer .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer .footer-links ul,
+    footer .footer-info {
+        margin-bottom: 20px;
+    }
+
+    footer .footer-links a {
+        justify-content: center;
+    }
+
+    footer .footer-content h3 {
+        width: auto;
+    }
+
+    /* Admin report item on mobile */
+    #report-list .report-item {
+        grid-template-columns: 1fr; /* Một cột trên mobile */
+        padding-bottom: 90px; /* Tăng padding để đủ chỗ cho nút */
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    #report-list .report-item .report-actions {
+        justify-content: space-around; /* Căn đều nút */
+        width: calc(100% - 40px); /* Chiếm gần hết chiều rộng */
+        left: 20px; /* Căn chỉnh từ trái */
+        right: auto; /* Bỏ right */
+    }
+    
+    #report-list .report-item button {
+        margin: 0 5px; /* Giảm margin giữa các nút */
+        font-size: 0.9rem;
+        padding: 8px 15px;
     }
 }
 
@@ -516,3 +852,21 @@ footer p {
         font-size: 2.2rem;
     }
 }
+
+/* Pseudo-class để chọn text chứa một chuỗi (không phải CSS chuẩn, cần JS polyfill hoặc Sass/Less) */
+/* Để các màu sắc này hoạt động trong CSS thuần, bạn cần một cách khác để đánh dấu vai trò,
+   ví dụ thêm class riêng cho từng vai trò trong HTML (vd: class="admin-card owner-role") */
+/* Nếu bạn muốn dùng cách này, bạn sẽ cần thư viện JavaScript như jQuery hoặc tự viết code JS để thêm class */
+/* Hoặc sử dụng Preprocessor như Sass/Less nếu dự án cho phép */
+/* Dưới đây là ví dụ dùng CSS thuần bằng cách target một phần của thuộc tính "title" hoặc "data-role"
+   Nếu không, cách tốt nhất là thêm class vào HTML */
+
+/* VÍ DỤ CÁCH TỐT NHẤT: THÊM CLASS VÀO HTML
+   <h3 class="role-owner">[OWNER] Lương Trí Cường</h3>
+   <h3 class="role-staff">[STAFF] Lê Hanh</h3>
+   <h3 class="role-trader">[TRADER] Dương Thế Tùng</h3>
+*/
+
+/* VÀ SAU ĐÓ CSS SẼ LÀ: */
+.admin-card h3.role-owner {
+    background: linear-gradient(to right, #4CAF
