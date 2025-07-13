@@ -22,81 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Đóng menu khi nhấp vào một mục điều hướng (trên di động)
+                document.body.classList.remove('nav-open');
             }
         });
     });
 
     // Handle Hack Report Form Submission
-const hackReportForm = document.getElementById('hackReportForm');
-if (hackReportForm) {
-    hackReportForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        // ... phần còn lại của code gửi tố cáo ...
-    });
-}
+    const hackReportForm = document.getElementById('hackReportForm');
+    if (hackReportForm) {
+        hackReportForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
             playClickSound(); // Phát âm thanh click
 
-            const playerName = document.getElementById('player').value;
-            const hackType = document.getElementById('hackType').value;
+            const playerName = document.getElementById('player-name').value;
+            const hackType = document.getElementById('hack-type').value;
             const evidence = document.getElementById('evidence').value;
-            const description = document.getElementById('description').value;
+            const reporterName = document.getElementById('reporter-name').value;
 
             try {
-                const response = await fetch('http://localhost:3000/api/report-hack', { // Thay đổi URL
+                // Thay đổi URL này thành URL API backend của bạn để gửi tố cáo
+                const response = await fetch('http://localhost:3000/api/report-hack', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ playerName, hackType, evidence, description })
+                    body: JSON.stringify({ playerName, hackType, evidence, reporterName })
                 });
 
                 if (response.ok) {
-                    alert('Báo cáo tố cáo thành công!');
-                    window.location.href = 'admin.html'; // Chuyển hướng về trang admin
+                    alert('Tố cáo hack đã được gửi thành công!');
+                    hackReportForm.reset(); // Xóa form sau khi gửi
                 } else {
                     const errorResponse = await response.text();
-                    console.error('Server error during report:', response.status, errorResponse);
+                    console.error('Server error during hack report:', response.status, errorResponse);
                     // KHÔNG HIỂN THỊ THÔNG BÁO LỖI CHO NGƯỜI DÙNG
                 }
             } catch (error) {
-                console.error('Network error during report:', error);
-                // KHÔNG HIỂN THỊ THÔNG BÁO LỖI CHO NGƯỜI DÙNG
-            }
-        });
-    }
-
-    // Handle Registration Form Submission
-    const registerForm = document.getElementById('registerForm');
-    if (registerForm) {
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            playClickSound();
-
-            const username = document.getElementById('reg-username').value;
-            const email = document.getElementById('reg-email').value;
-            const password = document.getElementById('reg-password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-
-            if (password !== confirmPassword) {
-                alert('Mật khẩu xác nhận không khớp!');
-                return;
-            }
-
-            try {
-                const response = await fetch('http://localhost:3000/api/register', { // Thay đổi URL
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, email, password })
-                });
-
-                if (response.ok) {
-                    alert('Đăng ký thành công! Vui lòng đăng nhập.');
-                    window.location.href = 'login.html'; // Chuyển hướng về trang đăng nhập
-                } else {
-                    const errorResponse = await response.text();
-                    console.error('Server error during registration:', response.status, errorResponse);
-                    // KHÔNG HIỂN THỊ THÔNG BÁO LỖI CHO NGƯỜI DÙNG
-                }
-            } catch (error) {
-                console.error('Network error during registration:', error);
+                console.error('Network error during hack report:', error);
                 // KHÔNG HIỂN THỊ THÔNG BÁO LỖI CHO NGƯỜI DÙNG
             }
         });
@@ -134,39 +95,19 @@ if (hackReportForm) {
         });
     }
 
-    // Script for falling money effect on Special Packages Card
-    const specialPackagesCard = document.getElementById('special-packages-card');
-    if (specialPackagesCard) {
-        const fallingMoneyContainer = specialPackagesCard.querySelector('.falling-money-container');
-        const numberOfBills = 20; // Số lượng tờ tiền rơi đồng thời
+    // Toggle menu for mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            document.body.classList.toggle('nav-open');
+            playClickSound();
+        });
 
-        function createMoneyBill() {
-            const moneyBill = document.createElement('div');
-            moneyBill.classList.add('money-bill');
-
-            const size = Math.random() * (40 - 20) + 20; // Kích thước ngẫu nhiên từ 20px đến 40px
-            moneyBill.style.width = `${size}px`;
-            moneyBill.style.height = `${size * 0.7}px`; // Giả sử tỉ lệ 100:70
-
-            const startX = Math.random() * 100; // Vị trí X ngẫu nhiên (0-100%)
-            moneyBill.style.left = `${startX}%`;
-
-            const animationDuration = Math.random() * (8 - 4) + 4; // Thời gian rơi ngẫu nhiên từ 4s đến 8s
-            moneyBill.style.animationDuration = `${animationDuration}s`;
-            moneyBill.style.animationDelay = `-${Math.random() * animationDuration}s`; // Tạo hiệu ứng rơi liên tục
-
-            fallingMoneyContainer.appendChild(moneyBill);
-
-            // Xóa tờ tiền sau khi nó rơi ra khỏi khung hình để tối ưu hiệu suất
-            moneyBill.addEventListener('animationend', () => {
-                moneyBill.remove();
-                createMoneyBill(); // Tạo lại một tờ tiền mới
-            });
-        }
-
-        // Tạo các tờ tiền ban đầu
-        for (let i = 0; i < numberOfBills; i++) {
-            createMoneyBill();
-        }
+        // Close menu when clicking outside (overlay)
+        document.body.addEventListener('click', (e) => {
+            if (document.body.classList.contains('nav-open') && !e.target.closest('#main-nav') && !e.target.closest('#menu-toggle')) {
+                document.body.classList.remove('nav-open');
+            }
+        });
     }
 });
