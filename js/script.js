@@ -113,7 +113,6 @@ if (hackReportForm) {
             }
         });
     }
-
     // Handle Login Form Submission
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
